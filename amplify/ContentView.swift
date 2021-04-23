@@ -36,8 +36,7 @@ struct ContentView_Previews: PreviewProvider {
 struct AmiciView: View {
   
   var body: some View {
-    Text("AmicoList")
-    //AmicoList()
+    AmicoList()
       .tabItem {
         Image(systemName: "person.3.fill")
         Text("Amici")

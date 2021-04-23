@@ -8,13 +8,42 @@
 import SwiftUI
 
 struct AmicoList: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  @EnvironmentObject var amicoStore: AmicoStore
+  @State private var showingAddAmico = false
+  
+  var body: some View {
+    NavigationView {
+      List {
+        ForEach(amicoStore.amici, id: \.id) { amico in
+          AmicoRowView(amico: amico)
+        }
+      }
+      .navigationBarTitle(Text("Amici"))
+      .navigationBarItems(
+        trailing:
+          Button(action: { showingAddAmico = true
+          }) {
+            Image(systemName: "plus")
+          }
+      )
     }
+  }
+}
+
+struct AmicoRowView: View {
+  var amico: Amico
+  var body: some View {
+    VStack {
+      if let nome = amico.nome {
+      Text(nome)
+        .font(.title)
+      }
+    }
+  }
 }
 
 struct AmicoList_Previews: PreviewProvider {
-    static var previews: some View {
-        AmicoList()
-    }
+  static var previews: some View {
+    AmicoList()
+  }
 }
