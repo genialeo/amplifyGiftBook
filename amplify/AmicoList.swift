@@ -26,6 +26,10 @@ struct AmicoList: View {
             Image(systemName: "plus")
           }
       )
+      .sheet(
+        isPresented: $showingAddAmico,
+        content: AddAmico.init
+      )
     }
   }
 }
